@@ -22,6 +22,10 @@ h1 {
     font-family: cursive;
 }
 
+h5 {
+    color: rebeccapurple;
+}
+
 .capitalize {
     text-transform: capitalize;
 }
