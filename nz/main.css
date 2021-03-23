@@ -1,10 +1,10 @@
-body  {
+body {
     max-width: 1280px;
     margin: auto;
     font-family: 'Open Sans', sans-serif;
 }
 
-header  {
+header {
     text-align: center;
 }
 
@@ -18,8 +18,7 @@ header p {
 
 .white,
 .white a:link,
-.white a:visited
- {
+.white a:visited {
     color: white;
 }
 
@@ -47,7 +46,7 @@ main p {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-main figure{
+main figure {
     margin-left: 0;
     width: 100%;
 }
@@ -56,7 +55,7 @@ main figure img {
     border: 1px solid black;
 }
 
-#map{
+#map {
     height: 360px;
     width: 100%;
     border: 1px solid gray;
@@ -82,17 +81,17 @@ footer {
     margin-right: 0.3em;
 }
 
-.ml-3{
+.ml-3 {
     margin-left: 0.3em;
 }
 
 @media screen and (max-width: 900px) {
-    main{
+    main {
         max-width: 90%;
     }
 }
 
-@media screen and (max-width: 1280px){
+@media screen and (max-width: 1280px) {
     header img.banner {
         width: 100vw;
     }
