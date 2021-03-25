@@ -6,6 +6,7 @@ const map = L.map("map", {
     ]
 });
 
-// WMTS-Services
+let mrk = L.marker([-44.7, 169.15 ]).addTo(map);
+
 
 console.log(document.querySelector("#map"));
