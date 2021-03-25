@@ -19,7 +19,6 @@ const map = L.map("map", {
 let nav = document.querySelector("#navigation");
 //console.log(nav);
 
-//console.log(ROUTE);
 ROUTE.sort((stop1, stop2) => {
     return stop1.nr > stop2.nr
 });
@@ -43,6 +42,7 @@ for (let entry of ROUTE) {
     }
 }
 
+nav.options.selectedIndex = 13 - 1;
 nav.onchange = (evt) => {
     let selected = evt.target.selectedIndex;
     let options = ect.target.options;
