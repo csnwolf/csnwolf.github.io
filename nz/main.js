@@ -7,6 +7,7 @@ const map = L.map("map", {
 });
 
 let mrk = L.marker([-44.7, 169.15 ]).addTo(map);
+mrk.bindPopup("Wanaka").openPopup();
 
 
 console.log(document.querySelector("#map"));
