@@ -9,8 +9,8 @@ let stop = {
 };
 
 const map = L.map("map", {
-    center: [stop.lat, stop.lng ],
-    zoom: 13,
+    //center: [stop.lat, stop.lng ],
+    //zoom: 13,
     layers: [
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
     ]
@@ -27,6 +27,7 @@ for (let entry of ROUTE) {
 `);
 
     if(entry.nr == 13)  {
+        map.setView([ entry.lat, entry.lng], 13);
         mrk.openPopup();
     }
 }
