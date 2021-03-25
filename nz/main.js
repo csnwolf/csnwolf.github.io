@@ -32,5 +32,6 @@ for (let entry of ROUTE) {
     }
 }
 
+//<option value="csnwolf">Wanaka</option>
 
 //console.log(document.querySelector("#map"));
