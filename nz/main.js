@@ -45,7 +45,7 @@ for (let entry of ROUTE) {
 nav.options.selectedIndex = 13 - 1;
 nav.onchange = (evt) => {
     let selected = evt.target.selectedIndex;
-    let options = ect.target.options;
+    let options = evt.target.options;
     let username =options[selected].value;
     let link = `https://${username}.github.io/nz/index.html`
     console.log(username, link);
