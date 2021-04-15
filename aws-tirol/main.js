@@ -41,8 +41,12 @@ fetch(awsUrl)
             <h3>${station.properties.name}</h3>
             <ul>
                 <li>Datum: ${formattedDate.toLocaleString("de")}</li>
+                <li>Seehöhe: ${station.geometry.coordinates[2]} m</li>
                 <li>Temperatur: ${station.properties.LT} C</li>
-            </ul>
+                <li>Schneehöhe: ${station.properties.HS || '?'} cm</li>
+                <li>Windgeschwindigkeit: ${station.properties.WG || '?'} km/h</li>
+                <li>Windgeschwindrichtung: ${station.properties.WR || '?'}</li>
+                </ul>
             `);
         marker.addTo(awsLayer);
     }
