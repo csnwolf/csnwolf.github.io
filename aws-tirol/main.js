@@ -52,9 +52,9 @@ fetch(awsUrl)
                 <li>Temperatur: ${station.properties.LT} C</li>
                 <li>Schneehöhe: ${station.properties.HS || '?'} cm</li>
                 <li>Windgeschwindigkeit: ${station.properties.WG || '?'} km/h</li>
-                <li>Windgeschwindrichtung: ${station.properties.WR || '?'}</li>
+                <li>Windrichtung: ${station.properties.WR || '?'}</li>
                 </ul>
-                <a target= " blank" href= "https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
+                <a target= "_blank" href= "https://wiski.tirol.gv.at/lawine/grafiken/1100/standard/tag/${station.properties.plot}.png">Grafik</a>
             `);
         marker.addTo(awsLayer);
         if (station.properties.HS) {
@@ -87,7 +87,7 @@ fetch(awsUrl)
             let windIcon = L.divIcon({
                 html: `<div class="wind-label ${windHighlightClass}">${station.properties.WG}</div>`,
             });
-            let WindMarker = L.marker([
+            let windMarker = L.marker([
                 station.geometry.coordinates[1],
                 station.geometry.coordinates[0]
             ], {
