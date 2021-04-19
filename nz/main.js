@@ -20,7 +20,11 @@ let nav = document.querySelector("#navigation");
 //console.log(nav);
 
 ROUTE.sort((stop1, stop2) => {
-    return stop1.nr > stop2.nr
+    if (stop1.nr > stop2.nr) {
+        return 1;
+    } else {
+        return -1;
+    }
 });
 
 for (let entry of ROUTE) {
