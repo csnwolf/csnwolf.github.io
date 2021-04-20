@@ -29,7 +29,7 @@ layerControl.addOverlay(snowLayer, "Schneehöhen (cm)");
 // snowLayer.addTo(map);
 let windLayer = L.featureGroup();
 layerControl.addOverlay(windLayer, "Windgeschwindigkeit (km/h)");
-windLayer.addTo(map);
+// windLayer.addTo(map);
 let temperatureLayer = L.featureGroup();
 layerControl.addOverlay(temperatureLayer, "Temperatur (C)");
 temperatureLayer.addTo(map);
@@ -96,6 +96,25 @@ fetch(awsUrl)
                     icon: windIcon
                 });
                 windMarker.addTo(windLayer);
+            }
+            if (station.properties.LT || station.properties.LT == 0) {
+                let temperatureHighlightClass = '';
+                if (station.properties.LT < 0) {
+                    temperatureHighlightClass = 'temperaturnegativ';
+                }
+                if (station.properties.LT >= 0) {
+                    temperatureHighlightClass = 'temperaturpositiv';
+                }
+                let temperatureIcon = L.divIcon({
+                    html: `<div class="temperature-label ${temperatureHighlightClass}">${station.properties.LT}</div>`,
+                });
+                let temperatureMarker = L.marker([
+                    station.geometry.coordinates[1],
+                    station.geometry.coordinates[0]
+                ], {
+                    icon: temperatureIcon
+                });
+                temperatureMarker.addTo(temperatureLayer);
             }
         }
         map.fitBounds(awsLayer.getBounds());
