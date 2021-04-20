@@ -1,5 +1,7 @@
+// https://leafletjs.com/reference-1.7.1.html#tilelayer
 let basemapGray = L.tileLayer.provider('BasemapAT.grau');
 
+// https://leafletjs.com/reference-1.7.1.html#map-example
 let map = L.map("map", {
     center: [47, 11],
     zoom: 9,
@@ -9,27 +11,37 @@ let map = L.map("map", {
 
 });
 
+// https://leafletjs.com/reference-1.7.1.html#control-layers
 let layerControl = L.control.layers({
     "BasemapAT.grau": basemapGray,
+// https://leafletjs.com/reference-1.7.1.html#tilelayer
     "BasemapAT.orthofoto": L.tileLayer.provider('BasemapAT.orthofoto'),
+// https://leafletjs.com/reference-1.7.1.html#tilelayer
     "BasemapAT.surface": L.tileLayer.provider('BasemapAT.surface'),
+// https://leafletjs.com/reference-1.7.1.html#layergroup
     "BasemapAT.overlay+ortho": L.layerGroup([
+// https://leafletjs.com/reference-1.7.1.html#tilelayer
         L.tileLayer.provider('BasemapAT.orthofoto'),
+// https://leafletjs.com/reference-1.7.1.html#tilelayer
         L.tileLayer.provider('BasemapAT.overlay')
     ])
 }).addTo(map);
 
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 
+// https://leafletjs.com/reference-1.7.1.html#featuregroup
 let awsLayer = L.featureGroup();
 layerControl.addOverlay(awsLayer, "Wetterstationen Tirol");
 // awsLayer.addTo(map);
+// https://leafletjs.com/reference-1.7.1.html#featuregroup
 let snowLayer = L.featureGroup();
 layerControl.addOverlay(snowLayer, "Schneehöhen (cm)");
 // snowLayer.addTo(map);
+// https://leafletjs.com/reference-1.7.1.html#featuregroup
 let windLayer = L.featureGroup();
 layerControl.addOverlay(windLayer, "Windgeschwindigkeit (km/h)");
 // windLayer.addTo(map);
+// https://leafletjs.com/reference-1.7.1.html#featuregroup
 let temperatureLayer = L.featureGroup();
 layerControl.addOverlay(temperatureLayer, "Temperatur (C)");
 temperatureLayer.addTo(map);
@@ -41,6 +53,7 @@ fetch(awsUrl)
         console.log('Daten konvertiert: ', json);
         for (station of json.features) {
             // console.log('Station: ', station);
+// https://leafletjs.com/reference-1.7.1.html#marker
             let marker = L.marker([
                 station.geometry.coordinates[1],
                 station.geometry.coordinates[0]
@@ -67,9 +80,11 @@ fetch(awsUrl)
                 if (station.properties.HS > 200) {
                     highlightClass = 'snow-200';
                 }
+// https://leafletjs.com/reference-1.7.1.html#divicon
                 let snowIcon = L.divIcon({
                     html: `<div class="snow-label ${highlightClass}">${station.properties.HS}</div>`
                 })
+// https://leafletjs.com/reference-1.7.1.html#marker
                 let snowMarker = L.marker([
                     station.geometry.coordinates[1],
                     station.geometry.coordinates[0]
@@ -86,9 +101,11 @@ fetch(awsUrl)
                 if (station.properties.WG > 20) {
                     windHighlightClass = 'wind-20';
                 }
+// https://leafletjs.com/reference-1.7.1.html#divicon
                 let windIcon = L.divIcon({
                     html: `<div class="wind-label ${windHighlightClass}">${station.properties.WG}</div>`,
                 });
+// https://leafletjs.com/reference-1.7.1.html#marker
                 let windMarker = L.marker([
                     station.geometry.coordinates[1],
                     station.geometry.coordinates[0]
@@ -105,9 +122,11 @@ fetch(awsUrl)
                 if (station.properties.LT >= 0) {
                     temperatureHighlightClass = 'temperaturpositiv';
                 }
+// https://leafletjs.com/reference-1.7.1.html#divicon
                 let temperatureIcon = L.divIcon({
                     html: `<div class="temperature-label ${temperatureHighlightClass}">${station.properties.LT}</div>`,
                 });
+// https://leafletjs.com/reference-1.7.1.html#marker
                 let temperatureMarker = L.marker([
                     station.geometry.coordinates[1],
                     station.geometry.coordinates[0]
