@@ -51,6 +51,14 @@ L.control.scale({
     imperial: false
 }).addTo(map);
 
+let newLabel = (coords, options) => {
+    console.log("Koordinaten coords: ", coords);
+    console.log("Optionsobjekt:", options);
+    let marker = L.marker([coords[1], coords[0]]);
+    console.log("Marker", marker);
+    return marker;
+};
+
 let awsUrl = 'https://wiski.tirol.gv.at/lawine/produkte/ogd.geojson';
 fetch(awsUrl)
     .then(response => response.json())
@@ -120,26 +128,32 @@ fetch(awsUrl)
                 windMarker.addTo(overlays.windspeed);
             }
             if (typeof station.properties.LT == "number") {
-                let temperatureHighlightClass = '';
-                if (station.properties.LT < 0) {
-                    temperatureHighlightClass = 'temperaturnegativ';
-                }
-                if (station.properties.LT >= 0) {
-                    temperatureHighlightClass = 'temperaturpositiv';
-                }
-// https://leafletjs.com/reference-1.7.1.html#divicon
-                let temperatureIcon = L.divIcon({
-                    html: `<div class="temperature-label ${temperatureHighlightClass}">${station.properties.LT}</div>`,
+                let marker = newLabel(station.geometry.coordinates, {
+                    value: station.properties.LT
                 });
-// https://leafletjs.com/reference-1.7.1.html#marker
-                let temperatureMarker = L.marker([
-                    station.geometry.coordinates[1],
-                    station.geometry.coordinates[0]
-                ], {
-                    icon: temperatureIcon
-                });
-                temperatureMarker.addTo(overlays.temperature);
+                marker.addTo(overlays.temperature);
             }
         }
+//                let temperatureHighlightClass = '';
+//               if (station.properties.LT < 0) {
+//                    temperatureHighlightClass = 'temperaturnegativ';
+//                }
+//                if (station.properties.LT >= 0) {
+//                    temperatureHighlightClass = 'temperaturpositiv';
+                }
+// https://leafletjs.com/reference-1.7.1.html#divicon
+//                let temperatureIcon = L.divIcon({
+//                    html: `<div class="temperature-label ${temperatureHighlightClass}">${station.properties.LT}</div>`,
+//                });
+// https://leafletjs.com/reference-1.7.1.html#marker
+//                let temperatureMarker = L.marker([
+//                    station.geometry.coordinates[1],
+//                    station.geometry.coordinates[0]
+//                ], {
+//                    icon: temperatureIcon
+//                });
+//                temperatureMarker.addTo(overlays.temperature);
+//            }
+//        }
         map.fitBounds(overlays.stations.getBounds());
     });
