@@ -52,10 +52,13 @@ L.control.scale({
 }).addTo(map);
 
 let newLabel = (coords, options) => {
-    console.log("Koordinaten coords: ", coords);
-    console.log("Optionsobjekt:", options);
-    let marker = L.marker([coords[1], coords[0]]);
-    console.log("Marker", marker);
+    let label = L.divIcon({
+        html: `<div>${options.value}</div>`,
+        className: "text-label"
+    })
+    let marker = L.marker([coords[1], coords[0]], {
+        icon: label
+    });
     return marker;
 };
 
@@ -140,7 +143,7 @@ fetch(awsUrl)
 //                }
 //                if (station.properties.LT >= 0) {
 //                    temperatureHighlightClass = 'temperaturpositiv';
-                }
+//                }
 // https://leafletjs.com/reference-1.7.1.html#divicon
 //                let temperatureIcon = L.divIcon({
 //                    html: `<div class="temperature-label ${temperatureHighlightClass}">${station.properties.LT}</div>`,
