@@ -130,7 +130,7 @@ fetch(awsUrl)
             if (typeof station.properties.RH == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
                     value: station.properties.RH.toFixed(1),
-                    colors: COLORS.temperature,
+                    colors: COLORS.humidity,
                     station: station.properties.name
                 });
                 marker.addTo(overlays.relativehumidity);
