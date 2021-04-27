@@ -129,7 +129,7 @@ fetch(awsUrl)
             }
             if (typeof station.properties.RH == "number") {
                 let marker = newLabel(station.geometry.coordinates, {
-                    value: station.properties.RH.toFixed(1),
+                    value: station.properties.RH.toFixed(0),
                     colors: COLORS.humidity,
                     station: station.properties.name
                 });
