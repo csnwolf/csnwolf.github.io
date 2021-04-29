@@ -71,13 +71,13 @@ let drawBusLines = (geojsonData) => {
     console.log('Bus Lines: ', geojsonData);
     L.geoJson(geojsonData, {
         style: (feature) => {
-                let col = "red";
-                if (feature.properties.LINE_NAME == 'Blue Line') {
-                    col = "blue";
-                }
-                return {
-                    color: col
-                }
+            let col = "red";
+            if (feature.properties.LINE_NAME == 'Blue Line') {
+                col = "blue";
+            }
+            return {
+                color: col
+            }
         },
         onEachFeature: (feature, layer) => {
             layer.bindPopup(`<strong>${feature.properties.LINE_NAME}</strong>
@@ -98,5 +98,6 @@ for (let config of OGDWIEN) {
                 drawBusStop(geojsonData);
             } else if (config.title == "Liniennetz Vienna Sightseeing") {
                 drawBusLines(geojsonData);
+            }
         })
 }
