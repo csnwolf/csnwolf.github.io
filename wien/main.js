@@ -153,3 +153,11 @@ for (let config of OGDWIEN) {
 
 // Leaflet hash
 L.Hash(map);
+
+// Minimap
+var miniMap = new L.Control.MiniMap(
+    L.tileLayer.provider("BasemapAT.basemap"),{
+        toggleDisplay: true,
+        minimized: false
+    }
+    ).addTo(map);
