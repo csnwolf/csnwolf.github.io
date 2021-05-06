@@ -152,7 +152,7 @@ for (let config of OGDWIEN) {
 }
 
 // Leaflet hash
-L.Hash(map);
+L.hash(map);
 
 // Minimap
 var miniMap = new L.Control.MiniMap(
