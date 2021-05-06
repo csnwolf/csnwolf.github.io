@@ -164,9 +164,15 @@ var miniMap = new L.Control.MiniMap(
 
 
 // Reachability plugin
+
+let styleIntervals = (feature) => {
+    console.log(feature);
+};
+
 L.control.reachability({
     // add settings/options here
     apiKey: '5b3ce3597851110001cf6248eeef88a250b44eada24fdad01cff149a',
+    styleFn: styleIntervals,
     drawButtonContent: '',
     drawButtonStyleClass: 'fa fa-pencil-alt fa-2x',
     deleteButtonContent: '',
