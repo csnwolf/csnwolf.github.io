@@ -100,7 +100,7 @@ let drawPedestrianAreas = (geojsonData) => {
                 fillOpacity: 0.3
             }
         },
-        oneEachFeature: (feature, layer) => {
+        onEachFeature: (feature, layer) => {
             layer.bindPopup(`<strong>Fußgängerzone ${feature.properties.ADRESSE}</strong>
             <hr>
             ${feature.properties.ZEITRAUM} <br>
