@@ -60,3 +60,11 @@ nav.onchange = (evt) => {
 //
 
 //console.log(document.querySelector("#map"));
+
+// Minimap
+var miniMap = new L.Control.MiniMap(
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"), {
+        toggleDisplay: true,
+        minimized: false
+    }
+).addTo(map);
