@@ -46,7 +46,7 @@ const elevationControl = L.control.elevation({
     elevationDiv: "#profile",
     followMarker: false,
     theme: 'lime-theme',
-});addTo(map);
+}).addTo(map);
 
 const drawTrack = (nr) => {
     // console.log('Track: ', nr);
@@ -61,13 +61,13 @@ const drawTrack = (nr) => {
         },
         polyline_options: {
             color: 'black',
-            dashArray: [2, 5]
+            dashArray: [2, 5],
         },
     }).addTo(overlays.tracks);
     gpxTrack.on("loaded", () => {
-        console.log('loaded gpx');
+        // console.log('loaded gpx');
         map.fitBounds(gpxTrack.getBounds());
-        console.log('Track name: ', gpxTrack.get_distance());
+        // console.log('Track name: ', gpxTrack.get_distance());
         gpxTrack.bindPopup(`
         <h3>${gpxTrack.get_name()}</h3>
         <ul>
@@ -97,7 +97,7 @@ for (let track of BIKETIROL) {
     } else {
         selected = '';
     }
-    pulldown.innerHTML += `<option value="${selected}">${track.nr}: ${track.etappe}</option>`;
+    pulldown.innerHTML += `<option ${selected} value="${track.nr}">${track.nr}: ${track.etappe}</option>`;
 }
 
 pulldown.onchange = () => {
