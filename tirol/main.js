@@ -54,9 +54,9 @@ const elevationControl = L.control.elevation({
 // Wikipedia Artikel Zeichnen
 let articleDraw = {};
 const drawWikipedia = (bounds) => {
-    console.log(bounds);
+    // console.log(bounds);
     let url = `https://secure.geonames.org/wikipediaBoundingBoxJSON?north=${bounds.getNorth()}&south=${bounds.getSouth()}&east=${bounds.getEast()}&west=${bounds.getWest()}&username=csnwolf&lang=de&maxRows=30`;
-    console.log(url);
+    // console.log(url);
 
     let icons = {
         adm1st: "wikipedia_administration.png",
@@ -85,7 +85,7 @@ const drawWikipedia = (bounds) => {
             // habe ich den Artikel schon gezeichnet?
             if (articleDraw[article.wikipediaUrl]) {
                 // Ja, nicht noch einmal zeichnen
-                console.log("schon gesehen", artcile.wikipediaUrl);
+                // console.log("schon gesehen", artcile.wikipediaUrl);
                 continue;
             } else {
                 articleDraw[article.wikipediaUrl] = true;
@@ -167,6 +167,10 @@ const drawTrack = (nr) => {
 const selectedTrack = 23;
 drawTrack(selectedTrack);
 
+const updateTexts = (nr) => {
+    console.log(nr);
+};
+
 // console.log('biketirol json: ', BIKETIROL);
 let pulldown = document.querySelector("#pulldown");
 // console.log('Pulldown: ', pulldown);
@@ -179,10 +183,15 @@ for (let track of BIKETIROL) {
     }
     pulldown.innerHTML += `<option ${selected} value="${track.nr}">${track.nr}: ${track.etappe}</option>`;
 }
+// Metadaten der Etappe updaten
+updateTexts(pulldown.value);
 
 pulldown.onchange = () => {
     // console.log('changed!!!!!', pulldown.value);
     drawTrack(pulldown.value);
+
+    // Metadaten der Etappe updaten
+    updateTexts(pulldown.value);
 };
 
 map.on("zoomend moveend", () => {
