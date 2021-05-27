@@ -52,6 +52,7 @@ const elevationControl = L.control.elevation({
 }).addTo(map);
 
 // Wikipedia Artikel Zeichnen
+let articleDraw = {};
 const drawWikipedia = (bounds) => {
     console.log(bounds);
     let url = `https://secure.geonames.org/wikipediaBoundingBoxJSON?north=${bounds.getNorth()}&south=${bounds.getSouth()}&east=${bounds.getEast()}&west=${bounds.getWest()}&username=csnwolf&lang=de&maxRows=30`;
@@ -81,7 +82,15 @@ const drawWikipedia = (bounds) => {
 
         // Artikel Marker erzeugen
         for (let article of jsonData.geonames) {
-            //nwelches Icon soll verwendet werden?
+            // habe ich den Artikel schon gezeichnet?
+            if (articleDraw[article.wikipediaUrl]) {
+                // Ja, nicht noch einmal zeichnen
+                console.log("schon gesehen", artcile.wikipediaUrl);
+                continue;
+            } else {
+                articleDraw[article.wikipediaUrl] = true;
+            }
+            //welches Icon soll verwendet werden?
             if (icons[article.feature]) {
                 // ein Bekanntes
             } else {
