@@ -127,10 +127,15 @@ const drawWikipedia = (bounds) => {
     });
 };
 
+let activeElevationTrack;
+
 const drawTrack = (nr) => {
     // console.log('Track: ', nr);
     elevationControl.clear();
     overlays.tracks.clearLayers();
+    if (activeElevationTrack) {
+        activeElevationTrack.removeFrom(map);
+    }
     let gpxTrack = new L.GPX(`tracks/${nr}.gpx`, {
         async: true,
         marker_options: {
@@ -162,6 +167,9 @@ const drawTrack = (nr) => {
         // Name, max_height, min_height, total_dist
     });
     elevationControl.load(`tracks/${nr}.gpx`);
+    elevationControl.on('eledata_loaded', (evt) => {
+        activeElevationTrack = evt.layer;
+    });
 };
 
 const selectedTrack = 23;
